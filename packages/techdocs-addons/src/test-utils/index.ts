@@ -14,18 +14,4 @@
  * limitations under the License.
  */
 
-/**
- * Package encapsulating the TechDocs Addon framework.
- *
- * @packageDocumentation
- */
-
-export {
-  useTechDocsAddons,
-  createTechDocsAddon,
-  TechDocsAddons,
-  TECHDOCS_ADDONS_WRAPPER_KEY,
-} from './addons';
-export { TechDocsAddonLocations } from './types';
-export type { TechDocsAddonAsyncMetadata, TechDocsAddonOptions } from './types';
-export * from './test-utils'
+export * from './test-utils';
