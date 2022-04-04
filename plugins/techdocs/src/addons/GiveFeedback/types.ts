@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 The Backstage Authors
+ * Copyright 2022 The Backstage Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,25 +15,22 @@
  */
 
 /**
- * The Backstage plugin that renders technical documentation for your components
- *
- * @packageDocumentation
+ * @public
  */
-
-export * from './types';
-export * from './api';
-export * from './client';
-export * from './reader';
-export * from './search';
-export * from './home';
-export {
-  EntityTechdocsContent,
-  TechDocsCustomHome,
-  TechDocsIndexPage,
-  TechdocsPage,
-  TechDocsReaderPage,
-  techdocsPlugin as plugin,
-  techdocsPlugin,
-  GiveFeedbackAddon
-} from './plugin';
-export * from './Router';
+ export type Template = {
+    title: string;
+    body: string;
+  };
+  
+  /**
+   * @public
+   */
+  export type TemplateBuilder = (selection: Selection) => Template;
+  
+  export type Repository = {
+    type: string;
+    name: string;
+    owner: string;
+    protocol: string;
+    resource: string;
+  };
