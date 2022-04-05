@@ -28,4 +28,4 @@ export {
 } from './addons';
 export { TechDocsAddonLocations } from './types';
 export type { TechDocsAddonAsyncMetadata, TechDocsAddonOptions } from './types';
-export * from './test-utils'
+export * from './test-utils';

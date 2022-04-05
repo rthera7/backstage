@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { useShadowRoot, useShadowRootElements, useShadowRootSelection } from './hooks';
+import {
+  useShadowRoot,
+  useShadowRootElements,
+  useShadowRootSelection,
+} from './hooks';
 import { renderHook } from '@testing-library/react-hooks';
 import { fireEvent, waitFor } from '@testing-library/react';
 
@@ -32,7 +36,7 @@ const mockShadowRoot = () => {
   const shadowRoot = div.attachShadow({ mode: 'open' });
   shadowRoot.innerHTML = '<h1>Shadow DOM Mock</h1>';
   (shadowRoot as ShadowRoot & Pick<Document, 'getSelection'>).getSelection =
-  getSelection;
+    getSelection;
   return shadowRoot;
 };
 
@@ -65,7 +69,6 @@ const selection = {
 } as unknown as Selection;
 
 getSelection.mockReturnValue(selection);
-
 
 describe('hooks', () => {
   describe('useShadowRoot', () => {

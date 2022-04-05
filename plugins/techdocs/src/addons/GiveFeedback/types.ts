@@ -17,20 +17,20 @@
 /**
  * @public
  */
- export type Template = {
-    title: string;
-    body: string;
-  };
-  
-  /**
-   * @public
-   */
-  export type TemplateBuilder = (selection: Selection) => Template;
-  
-  export type Repository = {
-    type: string;
-    name: string;
-    owner: string;
-    protocol: string;
-    resource: string;
-  };
+export type Template = {
+  title: string;
+  body: string;
+};
+
+/**
+ * @public
+ */
+export type TemplateBuilder = (selection: Selection) => Template;
+
+export type Repository = {
+  type: string;
+  name: string;
+  owner: string;
+  protocol: string;
+  resource: string;
+};

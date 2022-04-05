@@ -22,7 +22,10 @@ import {
   replaceUrlType as replaceGitlabUrlType,
 } from '@backstage/integration';
 import { scmIntegrationsApiRef } from '@backstage/integration-react';
-import { useShadowRootElements, useShadowRootSelection } from '../../reader/components/TechDocsReaderPage';
+import {
+  useShadowRootElements,
+  useShadowRootSelection,
+} from '../../reader/components/TechDocsReaderPage';
 
 import { PAGE_EDIT_LINK_SELECTOR } from './constants';
 

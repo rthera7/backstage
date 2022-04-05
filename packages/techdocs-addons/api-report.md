@@ -7,6 +7,12 @@ import { AsyncState } from 'react-use/lib/useAsyncFn';
 import { ComponentType } from 'react';
 import { Extension } from '@backstage/core-plugin-api';
 import { default as React_2 } from 'react';
+import { ReactElement } from 'react';
+import { screen as screen_2 } from 'testing-library__dom';
+import { TestApiProviderProps } from '@backstage/test-utils';
+
+// @public (undocumented)
+export type Apis = TestApiProviderProps<any>['apis'];
 
 // @public
 export function createTechDocsAddon<TComponentProps>(
@@ -18,6 +24,47 @@ export const TECHDOCS_ADDONS_WRAPPER_KEY = 'techdocs.addons.wrapper.v1';
 
 // @public
 export type TechDocsAddonAsyncMetadata<TValue> = AsyncState<TValue | undefined>;
+
+// @public
+export class TechDocsAddonBuilder {
+  constructor(addons: ReactElement[]);
+  // (undocumented)
+  atPath(path: string): this;
+  // (undocumented)
+  build(): React_2.ReactElement<
+    any,
+    string | React_2.JSXElementConstructor<any>
+  >;
+  // (undocumented)
+  static buildAddonsInTechDocs(addons: ReactElement[]): TechDocsAddonBuilder;
+  // (undocumented)
+  render(): typeof screen_2 & {
+    shadowRoot: ShadowRoot | null;
+  };
+  // (undocumented)
+  renderWithEffects(): Promise<ReturnType<TechDocsAddonBuilder['render']>>;
+  // (undocumented)
+  withApis(apis: Apis): this;
+  // (undocumented)
+  withDom(dom: ReactElement): this;
+  // (undocumented)
+  withEntity(entity: any): this;
+  // (undocumented)
+  withMetadata(metadata: any): this;
+  // (undocumented)
+  withReaderPage(readerPage: ReactElement): this;
+}
+
+// @public
+export type TechDocsAddonBuilderOptions = {
+  dom: ReactElement;
+  entity: any;
+  metadata: any;
+  componentId: string;
+  readerPage?: ReactElement;
+  apis: Apis;
+  path: string;
+};
 
 // @public
 export enum TechDocsAddonLocations {

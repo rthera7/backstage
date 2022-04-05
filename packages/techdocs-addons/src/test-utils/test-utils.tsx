@@ -37,11 +37,18 @@ import {
   TestApiProviderProps,
 } from '@backstage/test-utils';
 
-import { TechDocsAddons } from '@backstage/techdocs-addons';
+import { TechDocsAddons } from '../addons';
 
-type Apis = TestApiProviderProps<any>['apis'];
+/**
+ * @public
+ */
+export type Apis = TestApiProviderProps<any>['apis'];
 
-export type TechDocsAddonsBuilder = {
+/**
+ * options for {@link TechDocsAddonBuilder}
+ * @public
+ */
+export type TechDocsAddonBuilderOptions = {
   dom: ReactElement;
   entity: any; // TODO: TechDocsEntityMetadata type in techdocs-common?
   metadata: any; // TODO  TechDocsMetadata in techdocs-common?;
@@ -51,7 +58,7 @@ export type TechDocsAddonsBuilder = {
   path: string;
 };
 
-const defaultOptions: TechDocsAddonsBuilder = {
+const defaultOptions: TechDocsAddonBuilderOptions = {
   dom: <></>,
   entity: {},
   metadata: {},
@@ -83,8 +90,12 @@ const defaultDom = (
   </html>
 );
 
+/**
+ * test utility that can be used to build addons in techdocs page
+ * @public
+ */
 export class TechDocsAddonBuilder {
-  private options: TechDocsAddonsBuilder = defaultOptions;
+  private options: TechDocsAddonBuilderOptions = defaultOptions;
   private addons: ReactElement[];
 
   static buildAddonsInTechDocs(addons: ReactElement[]) {
