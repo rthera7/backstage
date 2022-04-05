@@ -19,7 +19,10 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import { scmIntegrationsApiRef } from '@backstage/integration-react';
 import { TechDocsAddonBuilder } from '@backstage/techdocs-addons';
 import { GiveFeedback } from './GiveFeedback';
-import { TechDocsReaderPage } from '../../reader/components/TechDocsReaderPage';
+import { TechDocsReaderPage } from '../../plugin';
+import { Entity } from '@backstage/catalog-model';
+import { techdocsApiRef } from '../../api';
+import { TechDocsMetadata } from '../../types';
 
 const byUrl = jest.fn().mockReturnValue({ type: 'github' });
 
@@ -28,6 +31,28 @@ const fireSelectionChangeEvent = (window: Window) => {
   selectionChangeEvent.initEvent('selectionchange', true, true);
   window.document.addEventListener('selectionchange', () => {}, false);
   fireEvent(window.document, selectionChangeEvent);
+};
+
+const mockTechDocsMetadata: TechDocsMetadata = {
+  site_name: 'test-componnet',
+  site_description: 'this is a test component',
+};
+
+const mockEntityMetadata: Entity = {
+  apiVersion: 'v1',
+  kind: 'Component',
+  metadata: {
+    name: 'test',
+    namespace: 'default',
+  },
+  spec: {
+    owner: 'test',
+  },
+};
+
+const techdocsApiMock = {
+  getEntityMetadata: jest.fn().mockResolvedValue(mockEntityMetadata),
+  getTechDocsMetadata: jest.fn().mockResolvedValue(mockTechDocsMetadata),
 };
 
 describe('GiveFeedback', () => {
@@ -81,7 +106,10 @@ describe('GiveFeedback', () => {
           </div>,
         )
         .withReaderPage(<TechDocsReaderPage />)
-        .withApis([[scmIntegrationsApiRef, { byUrl }]])
+        .withApis([
+          [techdocsApiRef, techdocsApiMock],
+          [scmIntegrationsApiRef, { byUrl }],
+        ])
         .renderWithEffects();
 
     (shadowRoot as ShadowRoot & Pick<Document, 'getSelection'>).getSelection =
